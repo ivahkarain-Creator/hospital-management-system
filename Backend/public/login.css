@@ -1,0 +1,82 @@
+body {
+      font-family: 'Segoe UI', sans-serif;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      margin: 0;
+      background-color: aquamarine;
+    background-image: url(doc\ 3.jpg);SS
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center;
+}
+    .login-container {
+      background-color: whitesmoke;
+      padding: 40px;
+      border-radius: 20px;
+      box-shadow: 0 5px 15px rgba(97, 185, 109, 0.2);
+      width: 350px;
+      text-align: center;
+    }
+
+    h2 {
+      color: #0052cc;
+      margin-bottom: 20px;
+    }
+input {
+      width: 90%;
+      padding: 10px;
+      margin: 10px 0;
+      border: 1px solid #b3c6ff;
+      border-radius: 10px;
+      font-size: 15px;
+    }
+
+    button {
+      width: 95%;
+      background-color: #3399ff;
+      color: white;
+      border: none;
+      padding: 12px;
+      border-radius: 10px;
+      font-size: 16px;
+      cursor: pointer;
+      margin-top: 10px;
+    }
+
+    button:hover {
+      background-color: #0570db;
+    }
+
+    .forgot {
+      margin-top: 10px;
+      display:block;
+      color: #0073e6;
+      text-decoration: none;
+      font-size: 14px;
+    }
+
+    .forgot:hover {
+      text-decoration: underline;
+    }
+
+    .error {
+      color: red;
+      font-size: 14px;
+      margin-top: 10px;
+    }
+.links {
+  text-align: center;
+  margin-top: 10px;
+  font-size: 14px;
+}
+
+.links a {
+  color: #007bff;
+  text-decoration: none;
+}
+
+.links a:hover {
+  text-decoration: underline;
+}

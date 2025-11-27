@@ -1,0 +1,167 @@
+/* ---------------------------
+   CONTAINER & OVERALL LAYOUT
+----------------------------*/
+body {
+    font-family: Arial, sans-serif;
+    background: #f3f6fa;
+    padding: 20px;
+}
+
+.form-container {
+    width: 80%;
+    max-width: 700px;
+    background: #fff;
+    margin: auto;
+    padding: 25px;
+    border-radius: 8px;
+    box-shadow: 0 0 10px rgba(0,0,0,0.1);
+}
+
+h2, h3 {
+    text-align: center;
+    margin-bottom: 20px;
+    color: #333;
+}
+
+/* ---------------------------
+   FORM INPUT STYLES
+----------------------------*/
+label {
+    display: block;
+    margin: 12px 0 6px;
+    font-weight: bold;
+    font-size: 14px;
+    color: #333;
+}
+
+input[type="text"], 
+input[type="number"],
+input[type="date"],
+select, 
+textarea {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #dcdcdc;
+    border-radius: 5px;
+    outline: none;
+    font-size: 14px;
+    margin-bottom: 10px;
+}
+
+textarea {
+    resize: vertical;
+}
+
+input:focus, textarea:focus, select:focus {
+    border-color: #0078ff;
+}
+
+/* ---------------------------
+   ROW & COLUMN LAYOUT
+----------------------------*/
+.row {
+    display: flex;
+    gap: 20px;
+}
+
+.col {
+    flex: 1;
+}
+
+/* ---------------------------
+   RADIO BUTTONS
+----------------------------*/
+input[type="radio"] {
+    margin-right: 5px;
+    margin-left: 10px;
+}
+
+/* ---------------------------
+   BUTTON GROUP
+----------------------------*/
+.button-group {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 20px;
+}
+
+.button-group button {
+    width: 23%;
+    padding: 10px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-weight: bold;
+    transition: all 0.2s ease;
+}
+
+/* BUTTON COLORS */
+.save-btn { background-color: #28a745; }
+.update-btn { background-color: #007bff; }
+.delete-btn { background-color: #dc3545; }
+.generate-btn { background-color: #17a2b8; }
+.download-btn { background-color: #6f42c1; }
+.back-btn { background-color: #6c757d; }
+
+.button-group button:hover {
+    opacity: 0.85;
+}
+
+/* ---------------------------
+   TABLE STYLES
+----------------------------*/
+.table-container {
+    width: 100%;
+    margin-top: 35px;
+}
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 10px;
+}
+
+table thead {
+    background: #0078ff;
+    color: white;
+}
+
+table th, table td {
+    padding: 12px;
+    border: 1px solid #ccc;
+    font-size: 14px;
+    text-align: left;
+}
+
+table tr:nth-child(even) {
+    background: #f8f9fb;
+}
+
+table tr:hover {
+    background: green;
+    cursor: pointer;
+}
+
+/* ---------------------------
+   RESPONSIVE LAYOUT
+----------------------------*/
+@media (max-width: 768px) {
+    .row {
+        flex-direction: column;
+    }
+
+    .button-group {
+        flex-wrap: wrap;
+        gap: 10px;
+    }
+
+    .button-group button {
+        width: 48%;
+    }
+}
+
+@media (max-width: 480px) {
+    .button-group button {
+        width: 100%;
+    }
+}

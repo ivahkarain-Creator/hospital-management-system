@@ -1,0 +1,647 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Doctor/Nurse Dashboard</title>
+
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <link rel="stylesheet" href="staff_dashboard.css">
+</head>
+
+<body>
+
+  <div class="container">
+
+    <!-- Sidebar -->
+    <nav class="sidebar">
+      <h2 class="logo"><i class="fas fa-hospital-user"></i> Staff Panel</h2>
+
+      <button class="side-btn" data-target="dashboardSection"><i class="fas fa-home"></i> Dashboard</button>
+      <button class="side-btn" data-target="usersSection"><i class="fas fa-users-cog"></i> Users</button>
+      <button class="side-btn" data-target="patientsSection"><i class="fas fa-user-injured"></i> Patients</button>
+      <button class="side-btn" data-target="appointmentsSection"><i class="fas fa-calendar-check"></i>
+        Appointments</button>
+      <button class="side-btn" data-target="followupSection"><i class="fas fa-notes-medical"></i> Follow-ups</button>
+      <button class="side-btn" data-target="healthtipsSection"><i class="fas fa-heartbeat"></i> Health Tips</button>
+      <button class="side-btn" data-target="remindersSection"><i class="fas fa-bell"></i> Reminders</button>
+      <button class="side-btn" data-target="reportsSection"><i class="fas fa-file-alt"></i> Reports</button>
+
+      <button class="side-btn logout" id="logoutBtn">
+        <i class="fas fa-sign-out-alt"></i> Logout
+      </button>
+    </nav>
+
+    <!-- Main Content -->
+    <div class="main-content">
+
+      <!-- Header -->
+      <header>
+        <h1 id="welcomeName">Welcome, Doctor/Nurse</h1>
+        <button class="logout-header" id="topLogoutBtn">
+          Logout <i class="fas fa-sign-out-alt"></i>
+        </button>
+      </header>
+
+      <!-- Dashboard Cards Section -->
+      <section class="section" id="dashboardSection">
+
+        <div class="cards">
+          <div class="card blue">
+            <i class="fas fa-users card-icon"></i>
+            <h3>Total Patients</h3>
+            <p id="patientCount">0</p>
+          </div>
+
+          <div class="card green">
+            <i class="fas fa-calendar-alt card-icon"></i>
+            <h3>Upcoming Appointments</h3>
+            <p id="appointmentCount">0</p>
+          </div>
+
+          <div class="card orange">
+            <i class="fas fa-file-medical card-icon"></i>
+            <h3>Pending Follow-ups</h3>
+            <p id="followupCount">0</p>
+          </div>
+
+          <div class="card purple">
+            <i class="fas fa-user-md card-icon"></i>
+            <h3>Total Staff</h3>
+            <p id="staffCount">0</p>
+          </div>
+        </div>
+
+        <!-- Welcome & About Section -->
+        <div class="welcome-section">
+          <h2>Welcome to NEDY Hospital</h2>
+          <p>
+            NEDY Hospital is committed to providing compassionate and high-quality healthcare services to our community.
+            Our dedicated team of doctors, nurses, and staff work together to ensure every patient receives personalized
+            care.
+            Explore our dashboard to manage patient records, appointments, follow-ups, reminders, and reports
+            efficiently.
+          </p>
+          <p>
+            Our hospital emphasizes preventive care, patient education, and the use of modern technology to improve
+            health outcomes.
+            Together, we aim to create a healthier community.
+          </p>
+        </div>
+
+        <!-- Health Education Section -->
+        <div class="health-education">
+          <h3>💡 Health Education & Awareness</h3>
+          <ul>
+            <li><strong>Stay Hydrated:</strong> Drink at least 8 glasses of water daily.</li>
+            <li><strong>Balanced Diet:</strong> Include fruits, vegetables, lean protein.</li>
+            <li><strong>Exercise Regularly:</strong> 30 minutes of activity daily.</li>
+            <li><strong>Mental Health:</strong> Practice mindfulness and take breaks.</li>
+            <li><strong>Preventive Check-ups:</strong> Early detection saves lives.</li>
+          </ul>
+          <p id="dailyTip">
+            <em>Tip of the Day: Take a 10-minute walk after meals to improve digestion and circulation.</em>
+          </p>
+        </div>
+
+      </section>
+
+
+
+      <!-- ============================== -->
+      <!--       USER MANAGEMENT FORM     -->
+      <!-- ============================== -->
+
+      <section class="section" id="usersSection" style="display:none;">
+
+        <div class="form-container">
+          <h2>USER MANAGEMENT FORM</h2>
+
+          <form id="userForm">
+
+            <!-- Hidden DB Primary Key -->
+            <input type="hidden" id="id">
+
+            <label for="userid">User ID</label>
+            <input type="text" id="userid" name="userid" placeholder="Auto-generated" readonly required>
+
+            <label for="fullname">Full Name</label>
+            <input type="text" id="fullname" name="fullname" placeholder="Enter Full Name" required>
+
+            <!-- ROW 1 -->
+            <div class="row">
+              <div class="col">
+                <label for="age">Age</label>
+                <input type="number" id="age" name="age" placeholder="Enter Age" required>
+              </div>
+
+              <div class="col">
+                <label for="gender">Gender</label>
+                <select id="gender" name="gender" required>
+                  <option value="">Select Gender</option>
+                  <option value="Male">Male</option>
+                  <option value="Female">Female</option>
+                </select>
+              </div>
+            </div>
+
+            <!-- ROW 2 -->
+            <div class="row">
+              <div class="col">
+                <label for="role">Role</label>
+                <select id="role" name="role" required>
+                  <option value="">Select Role</option>
+                  <option value="Doctor">Doctor</option>
+                  <option value="Nurse">Nurse</option>
+                  <option value="Admin">Admin</option>
+                </select>
+              </div>
+
+              <div class="col">
+                <label for="username">Username</label>
+                <input type="text" id="username" name="username" placeholder="Enter Username" required>
+              </div>
+            </div>
+
+            <!-- ROW 3 -->
+            <div class="row">
+              <div class="col">
+                <label for="email">Email</label>
+                <input type="email" id="email" name="email" placeholder="Enter Email" required>
+              </div>
+
+              <div class="col">
+                <label for="contact">Contact</label>
+                <input type="text" id="contact" name="contact" placeholder="Enter Contact Number" required>
+              </div>
+            </div>
+
+            <label for="password">Password</label>
+            <input type="password" id="password" name="password" placeholder="Enter Password" required>
+
+            <div class="button-group">
+              <button type="button" id="saveBtn" class="save-btn">SAVE</button>
+              <button type="button" id="updateBtn" class="update-btn">UPDATE</button>
+              <button type="button" id="deleteBtn" class="delete-btn">DELETE</button>
+            </div>
+
+          </form>
+        </div>
+
+        <!-- USERS TABLE (OUTSIDE FORM) -->
+        <div class="table-container">
+
+          <h3>Existing Users</h3>
+          <table id="usersTable">
+            <thead>
+              <thead>
+                <tr>
+                  <th>ID</th>
+                  <th>User ID</th>
+                  <th>Name</th>
+                  <th>Age</th>
+                  <th>Gender</th>
+                  <th>Role</th>
+                  <th>Username</th>
+                  <th>Email</th>
+                  <th>Contact</th>
+                  <th>Action</th>
+                </tr>
+              </thead>
+
+            <tbody></tbody>
+          </table>
+        </div>
+
+      </section>
+
+      <!-- Patients Form  Record Form-->
+      <section class="section" id="patientsSection" style="display:none;">
+        <div class="form-container">
+          <h2>PATIENT RECORD FORM</h2>
+
+          <form id="patientForm_patient">
+            <label for="patientID_patient">Patient ID</label>
+            <input type="text" id="patientID_patient" name="patientID" readonly>
+
+            <label for="fullName_patient">Full Name</label>
+            <input type="text" id="fullName_patient" name="fullName" placeholder="Enter Full Name" required>
+
+            <div class="row">
+              <div class="col">
+                <label for="age_patient">Age</label>
+                <input type="number" id="age_patient" name="age" min="0" placeholder="Enter Age" required>
+              </div>
+
+              <div class="col">
+                <label for="gender_patient">Gender</label>
+                <select id="gender_patient" name="gender" required>
+                  <option value="">Select Gender</option>
+                  <option value="Male">Male</option>
+                  <option value="Female">Female</option>
+                  <option value="Other">Other</option>
+                </select>
+              </div>
+            </div>
+
+            <div class="row">
+              <div class="col">
+                <label for="phone_patient">Phone</label>
+                <input type="tel" id="phone_patient" name="phone" placeholder="Enter Phone Number" required>
+              </div>
+
+              <div class="col">
+                <label for="email_patient">Email</label>
+                <input type="email" id="email_patient" name="email" placeholder="Enter Email" required>
+              </div>
+            </div>
+
+            <label for="notes_patient">Medical History / Notes</label>
+            <textarea id="notes_patient" name="notes" rows="3" placeholder="Enter medical history or notes"></textarea>
+
+            <div class="button-group">
+              <button type="button" class="save-btn btn-patient">SAVE</button>
+              <button type="button" class="update-btn btn-patient">UPDATE</button>
+              <button type="button" class="deactivate-btn btn-patient">DEACTIVATE</button>
+            </div>
+          </form>
+
+        </div>
+
+        <!-- EXISTING PATIENTS TABLE (NOW OUTSIDE FORM) -->
+        <div class="table-container">
+          <h3>Existing Patients</h3>
+          <table id="patientsTable_patient">
+            <thead>
+              <tr>
+                <th>Patient ID</th>
+                <th>Full Name</th>
+                <th>Age</th>
+                <th>Gender</th>
+                <th>Phone</th>
+                <th>Email</th>
+                <th>Notes</th>
+                <th>Status</th>
+                <th>Action</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td colspan="9" style="text-align:center;">Loading...</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </section>
+
+
+      <!-- Appointments Form -->
+      <section class="section" id="appointmentsSection" style="display:none;">
+        <div class="form-container">
+          <h2>Appointment Scheduling Form</h2>
+
+          <form id="appointmentForm">
+            <label for="patientID_appointment">Patient ID</label>
+            <input type="text" id="patientID_appointment" required>
+
+            <label for="patientname_appointment">Patient Name</label>
+            <input type="text" id="patientname_appointment" required readonly>
+
+            <label for="appointment_date_appointment">Appointment Date</label>
+            <input type="datetime-local" id="appointment_date_appointment" required>
+
+            <label for="doctorID_appointment">Doctor/Nurse ID</label>
+            <input type="text" id="doctorID_appointment" placeholder="Enter doctor/nurse ID" required>
+
+            <label for="doctor_username_appointment">Assign to Doctor (Username)</label>
+            <input type="text" id="doctor_username_appointment" placeholder="Enter doctor username" required readonly>
+
+            <label for="purpose_appointment">Purpose/Notes</label>
+            <textarea id="purpose_appointment" rows="3"></textarea>
+
+            <label for="status_appointment">Status</label>
+            <select id="status_appointment" required>
+              <option value="Scheduled">Scheduled</option>
+              <option value="Completed">Completed</option>
+              <option value="Cancelled">Cancelled</option>
+            </select>
+
+            <div class="button-group">
+              <button type="button" class="save-btn btn-appointment">SAVE</button>
+              <button type="button" class="update-btn btn-appointment">UPDATE</button>
+              <button type="button" class="delete-btn btn-appointment">DELETE</button>
+            </div>
+          </form>
+
+        </div>
+
+        <!-- Existing Appointments Table (Now Outside Form) -->
+        <h3>📋 Existing Appointments</h3>
+        <table id="appointmentsTable">
+          <thead>
+            <tr>
+              <th>ID</th>
+              <th>Patient ID</th>
+              <th>Patient Name</th>
+              <th>Date</th>
+              <th>Doctor/Nurse UserID</th>
+              <th>Purpose</th>
+              <th>Status</th>
+              <th>Action</th>
+            </tr>
+          </thead>
+          <tbody></tbody>
+        </table>
+      </section>
+
+
+      <!-- Follow-up Tracking Form -->
+      <section class="section" id="followupSection" style="display:none;">
+        <div class="form-container">
+          <h2>Follow-up Tracking Form</h2>
+
+          <form id="followForm">
+            <input type="hidden" id="recordID_followup">
+
+            <label>Patient ID</label>
+            <input type="text" id="patientID_followup" placeholder="Enter Patient ID" required>
+
+            <label>Full Name</label>
+            <input type="text" id="fullname_followup" readonly>
+
+            <label>Appointment Date</label>
+            <input type="date" id="appointmentDate_followup" required>
+
+            <label>Next Visit Date</label>
+            <input type="date" id="nextVisit_followup">
+
+            <label>Follow-up Notes</label>
+            <textarea id="notes_followup" rows="3"></textarea>
+
+            <label>Compliance Status</label>
+            <select id="status_followup" required>
+              <option value="">Select Status</option>
+              <option value="completed">Completed</option>
+              <option value="not completed">Not Yet Completed</option>
+              <option value="started">Just Started</option>
+            </select>
+
+            <div class="button-group">
+              <button type="button" class="save-btn btn-followup">SAVE</button>
+              <button type="button" class="update-btn btn-followup">UPDATE</button>
+              <button type="button" class="delete-btn btn-followup">DELETE</button>
+            </div>
+          </form>
+
+        </div>
+
+        <!-- Follow-up Table Outside Form -->
+        <h3>📋 Existing Follow-Up Records</h3>
+        <table id="followTable">
+          <thead>
+            <tr>
+              <th>ID</th>
+              <th>Patient ID</th>
+              <th>Name</th>
+              <th>Date</th>
+              <th>Notes</th>
+              <th>Status</th>
+              <th>Action</th>
+            </tr>
+          </thead>
+          <tbody></tbody>
+        </table>
+      </section>
+
+
+      <!-- Health Tips Form -->
+      <section class="section" id="healthtipsSection" style="display:none;">
+        <div class="form-container">
+          <h2>Health Tips Form</h2>
+
+          <form id="healthTipsForm" enctype="multipart/form-data">
+
+            <label for="tipsID_healthtips">Tips ID</label>
+            <input type="text" id="tipsID_healthtips" name="tipsID" placeholder="Auto-generated" readonly>
+
+            <label for="topic_healthtips">Health Topic</label>
+            <select id="topic_healthtips" name="topic" required>
+              <option value="">Choose topic</option>
+              <option value="General Health & Wellness">General Health & Wellness</option>
+              <option value="Chronic Disease Management">Chronic Disease Management</option>
+              <option value="Mental Health & Wellbeing">Mental Health & Wellbeing</option>
+              <option value="Physical Activity & Fitness">Physical Activity & Fitness</option>
+              <option value="Preventive Health">Preventive Health</option>
+              <option value="Oral Health">Oral Health</option>
+              <option value="Nutrition & Diet">Nutrition & Diet</option>
+              <option value="Lifestyle & Habits">Lifestyle & Habits</option>
+              <option value="Special Health Awareness">Special Health Awareness</option>
+            </select>
+
+            <label for="description_healthtips">Tips Description</label>
+            <textarea id="description_healthtips" name="description" placeholder="Enter tip details"
+              required></textarea>
+
+            <label for="file_healthtips">Upload File</label>
+            <input type="file" id="file_healthtips" name="file" accept=".pdf,.doc,.docx,.txt">
+
+            <div class="button-group">
+              <button type="submit" class="save-btn btn-healthtips">SAVE</button>
+              <button type="button" class="edit-btn btn-healthtips">EDIT</button>
+              <button type="button" class="delete-btn btn-healthtips">DELETE</button>
+              <button type="button" class="back-btn btn-healthtips">BACK</button>
+            </div>
+
+          </form>
+
+        </div>
+
+        <!-- Health Tips Table Outside Form -->
+        <h3>💡 Existing Health Tips</h3>
+        <table id="healthTipsTable">
+          <thead>
+            <tr>
+              <th>ID</th>
+              <th>Topic</th>
+              <th>Description</th>
+              <th>Date Created</th>
+              <th>File</th>
+            </tr>
+          </thead>
+          <tbody></tbody>
+        </table>
+      </section>
+
+
+      <!-- Reminders Form -->
+      <section class="section" id="remindersSection" style="display:none;">
+        <div class="form-container">
+          <h2>REMINDER FORM</h2>
+
+          <form id="reminderForm">
+
+            <label for="patientID_reminder">Patient ID</label>
+            <input type="text" id="patientID_reminder" name="patientID" placeholder="Enter Patient ID" required>
+
+            <label for="fullName_reminder">Full Name</label>
+            <input type="text" id="fullName_reminder" name="fullName" readonly placeholder="Auto-filled from database">
+
+            <label for="message_reminder">Message Content</label>
+            <input type="text" id="message_reminder" name="message" placeholder="Enter Message" required>
+
+            <label for="status_reminder">Compliance Status</label>
+            <textarea id="status_reminder" name="status" rows="3"
+              placeholder="Enter status (Pending/Completed/etc.)"></textarea>
+
+            <div class="button-group">
+              <button type="button" class="save-btn btn-reminder">SAVE</button>
+              <button type="button" class="update-btn btn-reminder">UPDATE</button>
+              <button type="button" class="delete-btn btn-reminder">DELETE</button>
+            </div>
+
+          </form>
+
+        </div>
+
+        <!-- Reminders Table Outside Form -->
+        <div class="table-container">
+          <h3>Existing Reminders</h3>
+          <table id="remindersTable">
+            <thead>
+              <tr>
+                <th>ID</th>
+                <th>Patient ID</th>
+                <th>Full Name</th>
+                <th>Message</th>
+                <th>Status</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td colspan="5" style="text-align:center;">Loading...</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </section>
+
+
+      <!-- Reports Generator Form -->
+      <section class="section" id="reportsSection" style="display:none;">
+
+        <div class="form-container">
+          <h2>REPORT GENERATOR FORM</h2>
+
+          <form id="reportForm">
+
+            <label for="reportTitle_reports">Report Title</label>
+            <input type="text" id="reportTitle_reports" name="reportTitle" placeholder="Enter Report Title" required>
+
+            <label for="reportType_reports">Select Report Type</label>
+            <select id="reportType_reports" name="reportType" required>
+              <option value="">-- Select Report Type --</option>
+              <option value="appointment_summary">Appointment Summary</option>
+              <option value="appointments_summary">Appointments Summary</option>
+              <option value="reminder_delivery">Reminder Delivery Report</option>
+              <option value="patient_progress">Patient Progress Report</option>
+              <option value="medication_adherence">Medication Adherence Report</option>
+              <option value="user_activity">System User Activity Report</option>
+              <option value="feedback_satisfaction">Feedback & Satisfaction Report</option>
+            </select>
+
+            <label>Date Range</label>
+            <div class="row">
+              <div class="col">
+                <label for="fromDate_reports">From</label>
+                <input type="date" id="fromDate_reports" name="fromDate" required>
+              </div>
+
+              <div class="col">
+                <label for="toDate_reports">To</label>
+                <input type="date" id="toDate_reports" name="toDate" required>
+              </div>
+            </div>
+
+            <label>Generate Format</label>
+            <div class="col" style="margin-top: -10px;">
+              <input type="radio" name="format_reports" value="pdf"> PDF
+              <input type="radio" name="format_reports" value="excel"> Excel
+              <input type="radio" name="format_reports" value="word"> Word
+              <input type="radio" name="format_reports" value="print"> Print
+            </div>
+
+            <div class="button-group">
+              <button type="button" class="save-btn btn-reports">SAVE</button>
+              <button type="button" class="generate-btn btn-reports">GENERATE</button>
+              <button type="button" class="download-btn btn-reports">DOWNLOAD</button>
+              <button type="button" class="back-btn btn-reports">BACK</button>
+            </div>
+
+          </form>
+
+        </div>
+
+        <!-- Generated Reports Table Outside Form -->
+        <div class="table-container">
+          <h3>Generated Reports</h3>
+          <table id="reportTable">
+            <thead>
+              <tr>
+                <th>Report Title</th>
+                <th>Type</th>
+                <th>Date Range</th>
+                <th>Format</th>
+                <th>Generated On</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td colspan="5" style="text-align:center;">No reports generated yet.</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+
+      </section>
+
+      <!-- Footer -->
+      <footer>
+        <p>© 2025 Health Reminder System — Designed by Ivah</p>
+      </footer>
+    </div>
+  </div>
+
+  <script>
+    const sidebarButtons = document.querySelectorAll('.side-btn');
+    const sections = document.querySelectorAll('.section');
+
+    function showSection(targetId) {
+      sections.forEach(sec => sec.style.display = 'none');
+      const targetSection = document.getElementById(targetId);
+      if (targetSection) targetSection.style.display = 'block';
+
+      sidebarButtons.forEach(btn => btn.classList.remove('active'));
+      const activeBtn = [...sidebarButtons].find(btn => btn.dataset.target === targetId);
+      if (activeBtn) activeBtn.classList.add('active');
+    }
+
+    sidebarButtons.forEach(btn => {
+      btn.addEventListener('click', () => showSection(btn.dataset.target));
+    });
+
+    showSection('dashboardSection');
+  </script>
+
+  <script src="patient.js"></script>
+  <script src="appointment.js"></script>
+  <script src="followup.js"></script>
+  <script src="Health tips.js"></script>
+  <script src="Reminder.js"></script>
+  <script src="Report Generator.js"></script>
+  <script src="staff_dashboard.js"></script>
+  <script src="User.js"></script>
+
+</body>
+
+</html>
