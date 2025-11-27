@@ -580,10 +580,6 @@ app.post("/appointments/add", async (req, res) => {
   }
 });
 
-// Update and Delete endpoints (optional)
-// Update: PUT /appointments/update/:id  (you can implement similarly)
-// Delete: DELETE /appointments/delete/:id
-
 
 // =========================================
 // FOLLOW-UP ROUTES
